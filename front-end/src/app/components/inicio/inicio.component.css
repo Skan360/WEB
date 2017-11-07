@@ -1,0 +1,6 @@
+.caja {
+    /*background-image: url('fondo2.jpg');*/
+    width: 100px; 
+    border:2px solid;
+    height: 100px;
+}

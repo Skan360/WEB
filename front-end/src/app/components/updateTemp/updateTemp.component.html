@@ -1,0 +1,44 @@
+
+<div class="col-lg-6">
+    <h1>{{title}}</h1>
+	<form #updateForm="ngForm" (ngSubmit)="onSubmit(updateForm)" class="col-lg-5" >
+		<div>
+            <hr>
+            <label>Fondo del Menu</label>
+            <br> Actual:
+            <section [ngClass]="'box'" [ngStyle]='bgCurrent'></section>
+            <br> Nuevo:
+            <input type="color" name="menu" #menu="ngModel" [(ngModel)]="newTemplate.style_menu.backgroundColor"  required/>
+            <span *ngIf="!menu.valid && menu.touched">
+                     obligatorio
+                </span>
+        </div>  
+        <div>
+            <hr>
+            <label>Tipo de letra</label> <br>
+            <input type="radio" name="letra" #letra="ngModel" [(ngModel)]="newTemplate.style_menu.fontFamily"  value="Pacifico" checked>  <code [ngStyle]='pac' > Pacifico </code> <br>
+            <input type="radio" name="letra" #letra="ngModel" [(ngModel)]="newTemplate.style_menu.fontFamily" value="Nosifer" >  <code [ngStyle]='nos' > Nosifer </code>  <br>
+            <input type="radio" name="letra" #letra="ngModel" [(ngModel)]="newTemplate.style_menu.fontFamily"  value="Indie flower" required>  <code [ngStyle]='indi' > Indie Flower </code>  <br>          
+        </div>  
+        <div>
+            <hr>
+            <label>Color de letra</label>
+            <input type="color" name="letramenu" #letramenu="ngModel" [(ngModel)]="newTemplate.style_menu.color"  required/>
+            <span *ngIf="!letramenu.valid && letramenu.touched">
+                     obligatorio
+                </span>
+        </div>  
+        
+        <!--
+		<p>
+			<label>Tipografía</label>
+			<input type="text" name="email" #email="ngModel" [(ngModel)]="user.email" class="form-control" required/>
+			<span *ngIf="!email.valid && email.touched">
+				Email obligatorio
+			</span>
+		</p>
+		-->
+        <br>
+		<input type="submit" value="Actualizar" class="btn btn-primary" [disabled]="!updateForm.form.valid"/>
+	</form>
+</div>

@@ -1,0 +1,111 @@
+<!--cualquier usuario puede ver una vez que haya elegido asignatura-->
+<div class="navigation col-lg 12" *ngIf="this.template">
+	<nav class="navbar navbar-default"  [ngStyle]="this.template.style_menu" >
+		<div class="container-fluid">
+			<div class="navbar-header">
+				<a [routerLink]="['/inicio']" class="navbar-brand">WEB</a>
+			</div>	
+			<ul class="nav navbar-nav" >
+				<li><a [ngStyle]="this.template.style_menu" [routerLink]="['/inicio']" [routerLinkActive]="['active']"  class="hover"><span class="glyphicon glyphicon-home"></span> Pagina Principal</a></li>
+				<li><a [ngStyle]="this.template.style_menu" [routerLink]="['/index']" [routerLinkActive]="['active']" *ngIf="!identity">
+				Asignaturas</a></li>
+				<li *ngIf="identity"><a [ngStyle]="this.template.style_menu"  [routerLink]="['/addmaterial']" [routerLinkActive]="['active']" *ngIf="identity.role=='ROLE_MAESTRO'">
+				Agregar Material</a></li>
+				<li><a (mouseover)="hover=true" (mouseleave)="hover=false"  [ngStyle]="{color: hover==true  ? 'lightgrey' : 'grey' }" [routerLink]="['/dudas_comentarios']" [routerLinkActive]="['active']" >Dudas y comentarios</a></li>
+				<li><a [routerLink]="['/contacto']" [routerLinkActive]="['active']" > Contacto</a></li>
+				<li *ngIf="identity"><a [routerLink]="['/updateTemp']" [routerLinkActive]="['active']" *ngIf="identity.role=='ROLE_MAESTRO'">
+					Cambiar Plantilla</a></li>
+			</ul>
+			<ul class="nav navbar-nav navbar-right" *ngIf="!identity">
+				<li>
+					<a [routerLink]="['/registro']" [routerLinkActive]="['active']">
+						<span class="glyphicon glyphicon-user"></span>
+						Registro
+					</a>
+				</li>
+				<li>
+					<a [routerLink]="['/login']" [routerLinkActive]="['active']">
+						<span class="glyphicon glyphicon-log-in"></span>
+						Login
+					</a>
+				</li>
+			</ul>
+			<ul class="nav navbar-nav navbar-right" *ngIf="identity">
+				<li class="dropdown">
+					<a class="dropdown-toggle" data-toggle="dropdown" href="#">
+						{{identity.name}} <span class="caret"></span>
+					</a>
+					<ul class="dropdown-menu">
+						<li >
+							<a href="#"><span class="glyphicon glyphicon-cog"></span>
+							Mis datos
+							</a>
+						</li>
+						<li >
+							<a class="pointer" (click)="logout()"><span class="glyphicon glyphicon-log-out"></span>
+							Salir
+							</a>
+						</li>
+					</ul>
+				</li>
+			</ul>
+
+		</div>
+	</nav>
+	<hr>
+</div>
+
+<!--cualquier usuario que no haya elegido asignatura y este no este logueado-->
+<div class="navigation col-lg 12" *ngIf="!this.template && !identity">
+	<nav class="navbar navbar-default">
+		<div class="container-fluid">
+			<div class="navbar-header">
+				<a [routerLink]="['/inicio']" class="navbar-brand">WEB</a>
+			</div>	
+			<ul class="nav navbar-nav navbar-right" *ngIf="!identity">
+				<li>
+					<a [routerLink]="['/login']" [routerLinkActive]="['active']">
+						<span class="glyphicon glyphicon-log-in"></span>
+						Login
+					</a>
+				</li>
+			</ul>
+		</div>
+	</nav>
+	<hr>
+</div>
+
+<!--cualquier usuario que no haya elegido asignatura y este este logueado-->
+<!--<div class="navigation col-lg 12" *ngIf="!this.template && identity">
+	<nav class="navbar navbar-default">
+		<div class="container-fluid">
+			<div class="navbar-header">
+				<a [routerLink]="['/inicio']" class="navbar-brand">WEB</a>
+			</div>	
+			<ul class="nav navbar-nav navbar-right" *ngIf="identity">
+				<li class="dropdown">
+					<a class="dropdown-toggle" data-toggle="dropdown" href="#">
+						{{identity.name}} <span class="caret"></span>
+					</a>
+					<ul class="dropdown-menu">
+						<li >
+							<a href="#"><span class="glyphicon glyphicon-cog"></span>
+							Mis datos
+							</a>
+						</li>
+						<li >
+							<a class="pointer" (click)="logout()"><span class="glyphicon glyphicon-log-out"></span>
+							Salir
+							</a>
+						</li>
+					</ul>
+				</li>
+			</ul>
+		</div>
+	</nav>
+</div>
+<hr>
+-->
+<router-outlet></router-outlet>
+<router-outlet></router-outlet>
+

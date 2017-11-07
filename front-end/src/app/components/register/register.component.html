@@ -1,0 +1,86 @@
+<!--<div class="navigation col-lg 12" >
+	<nav class="navbar navbar-default">
+		<div class="container-fluid">
+			<div class="navbar-header">
+				<a [routerLink]="['/inicio']" class="navbar-brand">WEB</a>
+			</div>	
+			<ul class="nav navbar-nav">
+				<li><a [routerLink]="['/inicio']" [routerLinkActive]="['active']" ><span class="glyphicon glyphicon-home"></span> Pagina Principal</a></li>
+				<li><a [routerLink]="['/index']" [routerLinkActive]="['active']" >
+				Asignaturas</a></li>
+				<li><a [routerLink]="['/dudas_comentarios']" [routerLinkActive]="['active']" >Dudas y comentarios</a></li>
+				<li><a [routerLink]="['/contacto']" [routerLinkActive]="['active']" > Contacto</a></li>
+			</ul>
+			<ul class="nav navbar-nav navbar-right">
+				<li>
+					<a [routerLink]="['/registro']" [routerLinkActive]="['active']">
+						<span class="glyphicon glyphicon-user"></span>
+						Registro
+					</a>
+				</li>
+				<li>
+					<a [routerLink]="['/login']" [routerLinkActive]="['active']">
+						<span class="glyphicon glyphicon-log-in"></span>
+						Login
+					</a>
+				</li>
+			</ul>
+		</div>
+	</nav>
+</div>
+-->
+<div class="col-lg-6">
+	<h1>{{title}}</h1>
+	<div class="alert alert-danger" *ngIf="message=='error'">
+		Asignatura ya existente
+	</div>
+	<div class="alert alert-success" *ngIf="message=='success'">
+		Registro completado, <a [routerLink]="['/login']"> Inicia sesion aquí</a>.
+	</div>
+
+	
+	<form #registerForm="ngForm" (ngSubmit)="onSubmit(registerForm)" class="col-lg-10" >
+		<p>
+			<label>Usuario</label>
+			<input type="text" name="name" #name="ngModel" [(ngModel)]="user.name" class="form-control" required/>
+			<span *ngIf="!name.valid && name.touched">
+				Usuario obligatorio
+			</span>
+		</p>
+		<p>
+			<label>Email</label>
+			<input type="text" name="email" #email="ngModel" [(ngModel)]="user.email" class="form-control" required/>
+			<span *ngIf="!email.valid && email.touched">
+				Email obligatorio
+			</span>
+		</p>
+		<p>
+			<label>Asignatura</label>
+			<input type="text" name="assignment_name" #assignment_name="ngModel" [(ngModel)]="user.assignment_name" class="form-control" required/>
+			<span *ngIf="!assignment_name.valid && assignment_name.touched">
+				Asignatura obligatoria
+			</span>
+			<!--<label>Asignatura</label>
+			<select name="assignment" #assignment="ngModel" [(ngModel)]="user.assignment" class="form-control">
+			  <option value="Control">Control</option>
+			  <option value="mate">mate</option>
+			  <option value="esp">esp</option>
+			</select>-->
+		</p>
+		<p>
+			<label>Contraseña</label>
+			<input type="password" name="password" #password="ngModel" [(ngModel)]="user.password"  class="form-control" required/>
+			<span *ngIf="!password.valid && password.touched">
+				Contraseña obligatoria
+			</span>
+		</p>
+		<!-- Para pasarlo a tabla materiales-->
+		<!--
+		<p>
+			<label>File</label>
+			<input type="file" name="file" #file="ngModel" [(ngModel)]="user.file"  class="form-control" />
+		</p>
+		-->
+		<input type="submit" value="{{title}}" class="btn btn-primary" [disabled]="!registerForm.form.valid"/>
+	</form>
+</div>

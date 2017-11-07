@@ -1,0 +1,14 @@
+<div>
+	<form (ngSubmit)="onSubmit(selectElem.value)" class="col-lg-10" >
+		<select #selectElem >
+		    <optgroup *ngFor="let topic of topics" label={{topic.name}}>
+		    	<ng-container *ngFor="let subtopic of subtopics">
+		    		<option *ngIf="subtopic.topic == topic._id" id="subtopic" [value]="subtopic._id" >{{subtopic.name}}
+			    	</option>
+		    	</ng-container>
+		    </optgroup>>
+		</select>
+		<input type="submit" value="{{title}}" class="btn btn-success" />
+	</form>
+</div>
+<!--*ngIf="subtopic.topic == topic._id"-->

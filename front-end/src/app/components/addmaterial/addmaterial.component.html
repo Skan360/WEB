@@ -1,0 +1,39 @@
+<div>
+	<div class="alert alert-danger" *ngIf="message=='error'">
+		Nombre de material ya existente
+	</div>
+	<div class="alert alert-success" *ngIf="message=='success'">
+		Material guardado
+	</div>
+	<form #materialForm="ngForm" (ngSubmit)="onSubmit(materialForm)" class="col-lg-10" >
+		<p>
+			<select name="subtopic_id" #subtopic_id="ngModel" [(ngModel)]="material.subtopic_id" class="form-control">
+			    <optgroup *ngFor="let topic of topics" label={{topic.name}}>
+			    	<ng-container *ngFor="let subtopic of subtopics">
+			    		<option *ngIf="subtopic.topic == topic._id" id="subtopic" [value]="subtopic._id" >{{subtopic.name}}
+				    	</option>
+			    	</ng-container>
+			    </optgroup>>
+			</select>
+		</p>
+		
+		<p>
+			<label>Profesor</label>
+			<input type="text" name="profesor" #profesor="ngModel" [(ngModel)]="material.profesor" class="form-control" required/>
+		</p>
+		<input type="submit" value="{{title}}" class="btn btn-success" />
+	</form>
+</div>
+<!--<div>
+	<form #materialForm="ngForm" (ngSubmit)="onSubmit(addmaterialForm)" class="col-lg-10" >
+		<select #selectElem >
+		    <optgroup *ngFor="let topic of topics" label={{topic.name}}>
+		    	<ng-container *ngFor="let subtopic of subtopics">
+		    		<option *ngIf="subtopic.topic == topic._id" id="subtopic" [value]="subtopic._id" >{{subtopic.name}}
+			    	</option>
+		    	</ng-container>
+		    </optgroup>>
+		</select>
+		<input type="submit" value="{{title}}" class="btn btn-success" />
+	</form>
+</div>-->

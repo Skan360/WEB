@@ -1,0 +1,57 @@
+<!--<div class="navigation col-lg 12" >
+	<nav class="navbar navbar-default">
+		<div class="container-fluid">
+			<div class="navbar-header">
+				<a [routerLink]="['/inicio']" class="navbar-brand">WEB</a>
+			</div>	
+			<ul class="nav navbar-nav">
+				<li><a [routerLink]="['/inicio']" [routerLinkActive]="['active']" ><span class="glyphicon glyphicon-home"></span> Pagina Principal</a></li>
+				<li><a [routerLink]="['/index']" [routerLinkActive]="['active']" >
+				Asignaturas</a></li>
+				<li><a [routerLink]="['/dudas_comentarios']" [routerLinkActive]="['active']" >Dudas y comentarios</a></li>
+				<li><a [routerLink]="['/contacto']" [routerLinkActive]="['active']" > Contacto</a></li>
+			</ul>
+			<ul class="nav navbar-nav navbar-right">
+				<li>
+					<a [routerLink]="['/registro']" [routerLinkActive]="['active']">
+						<span class="glyphicon glyphicon-user"></span>
+						Registro
+					</a>
+				</li>
+				<li>
+					<a [routerLink]="['/login']" [routerLinkActive]="['active']">
+						<span class="glyphicon glyphicon-log-in"></span>
+						Login
+					</a>
+				</li>
+			</ul>
+		</div>
+	</nav>
+</div>
+-->
+<div class="col-lg-6">
+	<h1>{{title}}</h1>
+	<div class="alert alert-danger" *ngIf="status=='error'">
+		Login incorrecto
+	</div>
+	<div class="alert alert-success" *ngIf="status=='success'">
+		Login correcto
+	</div>
+	<form #loginForm="ngForm" (ngSubmit)="onSubmit()" class="col-lg-10" >
+		<p>
+			<label>Usuario</label>
+			<input type="text" name="name" #name="ngModel" [(ngModel)]="user.name" class="form-control" required/>
+			<span *ngIf="!name.valid && name.touched">
+				Usuario obligatorio
+			</span>
+		</p>
+		<p>
+			<label>Contraseña</label>
+			<input type="password" name="password" #password="ngModel" [(ngModel)]="user.password" class="form-control" required/>
+			<span *ngIf="!password.valid && password.touched">
+				Contraseña obligatoria
+			</span>
+		</p>
+		<input type="submit" value="{{title}}" class="btn btn-success" [disabled]="!loginForm.form.valid"/>
+	</form>
+</div>

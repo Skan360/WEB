@@ -1,0 +1,18 @@
+
+<h1>{{colores}}</h1>
+
+<section id="ca"
+	style="width:400px;height:300px;border:2px solid"
+	[style.background]="colores"
+	>
+</section>
+
+<div>
+	<form (ngSubmit)="onSubmit(selectElem.value)" class="col-lg-10" >
+		<select #selectElem >
+		    <option *ngFor="let assignment of assignments" id="materia" [value]="assignment._id">{{assignment.assignment_name}}
+		    </option>
+		</select>
+		<input type="submit" value="{{title}}" class="btn btn-success" />
+	</form>
+</div>
