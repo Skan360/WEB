@@ -42,10 +42,11 @@ export class AddMaterialComponent implements OnInit{
   ngOnInit(){
        var l = [];
       this.assignment=this._assignmentService.getAssignment();
+      console.log(this.assignment);
       this._topicService.getInfoTopics(this.assignment).subscribe(
         response=>{
             this.topics=response.topics;
-            //console.log(this.topics);
+            console.log(this.topics);
             for (let t in this.topics) {
                 //console.log(this.topics[t]._id);
                 this._subtopicService.getInfoSubtopics(this.topics[t]._id).subscribe(

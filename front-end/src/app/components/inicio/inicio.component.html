@@ -37,6 +37,9 @@
 <section id="caja" style="width:400px;height:300px;border:2px solid"></section>
 
 <br>
-<index [colores]="col"></index>-->
- 
-<h1> {{title}}</h1>
+<index [colores]="col"></index>  
+  [ngStyle]="this.template.style_menu" -->
+ <div [ngStyle]="this.template.style_menu">
+	<h1> {{title}}</h1>
+ </div>
+
